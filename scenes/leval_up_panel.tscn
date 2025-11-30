@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://4xnbu4xk042k"]
+[gd_scene load_steps=5 format=3 uid="uid://4xnbu4xk042k"]
 
 [ext_resource type="Script" uid="uid://boql8rxoou484" path="res://scenes/level_up_panel.gd" id="1_d14fk"]
+[ext_resource type="PackedScene" uid="uid://bkr80g22y78fw" path="res://scenes/level_up_card.tscn" id="2_ghlmq"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_owpp6"]
 border_width_left = 5
@@ -27,33 +28,12 @@ theme_override_constants/margin_top = 30
 theme_override_constants/margin_right = 30
 theme_override_constants/margin_bottom = 30
 
-[node name="level_up_panel" type="Panel" parent="." node_paths=PackedStringArray("card_container")]
+[node name="level_up_panel" type="Panel" parent="." node_paths=PackedStringArray("card_container", "button_ok")]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_owpp6")
 script = ExtResource("1_d14fk")
-card_container = NodePath("v_box_container/hb_card_container")
-
-[node name="v_box_container" type="VBoxContainer" parent="level_up_panel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/separation = 15
-
-[node name="label_title" type="Label" parent="level_up_panel/v_box_container"]
-layout_mode = 2
-text = "Level Up!"
-label_settings = SubResource("LabelSettings_7axt1")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="hb_card_container" type="HBoxContainer" parent="level_up_panel/v_box_container"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_constants/separation = 60
-alignment = 1
+card_container = NodePath("margin_container/v_box_container/hb_card_container")
+button_ok = NodePath("margin_container/v_box_container/hb_button_container/button_ok")
 
 [node name="margin_container" type="MarginContainer" parent="level_up_panel"]
 layout_mode = 1
@@ -62,3 +42,38 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="v_box_container" type="VBoxContainer" parent="level_up_panel/margin_container"]
+layout_mode = 2
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="label_title" type="Label" parent="level_up_panel/margin_container/v_box_container"]
+layout_mode = 2
+text = "Level Up!"
+label_settings = SubResource("LabelSettings_7axt1")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="hb_card_container" type="HBoxContainer" parent="level_up_panel/margin_container/v_box_container"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 60
+alignment = 1
+
+[node name="level_up_card" parent="level_up_panel/margin_container/v_box_container/hb_card_container" instance=ExtResource("2_ghlmq")]
+layout_mode = 2
+
+[node name="hb_button_container" type="HBoxContainer" parent="level_up_panel/margin_container/v_box_container"]
+layout_mode = 2
+alignment = 2
+
+[node name="button_ok" type="Button" parent="level_up_panel/margin_container/v_box_container/hb_button_container"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "OK"
