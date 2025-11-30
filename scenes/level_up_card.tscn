@@ -1,0 +1,51 @@
+[gd_scene load_steps=4 format=3 uid="uid://bkr80g22y78fw"]
+
+[ext_resource type="Script" uid="uid://dbbb7vchxqmda" path="res://scenes/level_up_card.gd" id="1_ggdq3"]
+[ext_resource type="Texture2D" uid="uid://dg8vplvbg21n3" path="res://assets/Screenshot 2023-08-21 222316.png" id="2_t30hr"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_sxins"]
+font_size = 24
+
+[node name="level_up_card" type="Panel"]
+clip_contents = true
+custom_minimum_size = Vector2(250, 300)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_ggdq3")
+
+[node name="margin_container" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="v_box_container" type="VBoxContainer" parent="margin_container"]
+layout_mode = 2
+alignment = 1
+
+[node name="label_title" type="Label" parent="margin_container/v_box_container"]
+layout_mode = 2
+text = "Card Title"
+label_settings = SubResource("LabelSettings_sxins")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="texture_rect" type="TextureRect" parent="margin_container/v_box_container"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("2_t30hr")
+expand_mode = 2
+stretch_mode = 6
+
+[node name="label_description" type="Label" parent="margin_container/v_box_container"]
+layout_mode = 2
+text = "Card Description
+Card Description
+Card Description"
+vertical_alignment = 1
