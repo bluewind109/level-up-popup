@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://4xnbu4xk042k"]
+[gd_scene load_steps=8 format=3 uid="uid://4xnbu4xk042k"]
 
 [ext_resource type="Script" uid="uid://boql8rxoou484" path="res://scenes/level_up_panel.gd" id="1_d14fk"]
 [ext_resource type="PackedScene" uid="uid://bkr80g22y78fw" path="res://scenes/level_up_card.tscn" id="2_ghlmq"]
@@ -17,6 +17,36 @@ corner_detail = 20
 
 [sub_resource type="LabelSettings" id="LabelSettings_7axt1"]
 font_size = 64
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e300r"]
+bg_color = Color(0.11858138, 0.11858139, 0.11858132, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.8, 0.8, 0.8, 0.47058824)
+border_blend = true
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7h74h"]
+bg_color = Color(0.11858138, 0.11858139, 0.11858132, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.79607844, 0.85490197, 0.12156863, 0.6862745)
+border_blend = true
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u78vy"]
+bg_color = Color(0.11858138, 0.11858139, 0.11858132, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.79607844, 0.85490197, 0.12156863, 1)
+border_blend = true
+corner_detail = 1
 
 [node name="margin_container" type="MarginContainer"]
 anchors_preset = 15
@@ -77,4 +107,7 @@ alignment = 2
 custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
 theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxFlat_e300r")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_7h74h")
+theme_override_styles/hover = SubResource("StyleBoxFlat_u78vy")
 text = "OK"
