@@ -26,4 +26,6 @@ func _tween_show_card() -> void:
 	var tween = create_tween()
 	tween.set_trans(Tween.TRANS_SINE)
 	tween.set_ease(Tween.EASE_OUT)
-	tween.tween_property(self, "modulate:a", 1.0, 0.125)
+	tween.set_parallel(true)
+	tween.tween_property(self, "modulate:a", 1.0, tween_duration).from(0)
+	tween.tween_property(self, "scale", Vector2(1, 1), tween_duration).from(Vector2(0.5, 1.25))

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://3tuxnqf0v3dh"]
 
-[ext_resource type="PackedScene" uid="uid://4xnbu4xk042k" path="res://scenes/leval_up_panel.tscn" id="1_7axt1"]
+[ext_resource type="PackedScene" uid="uid://4xnbu4xk042k" path="res://scenes/level_up_panel.tscn" id="1_7axt1"]
 
 [node name="canvas" type="CanvasLayer"]
 

@@ -9,6 +9,9 @@ font_size = 24
 [node name="level_up_card" type="Panel"]
 clip_contents = true
 custom_minimum_size = Vector2(250, 300)
+offset_right = 250.0
+offset_bottom = 300.0
+pivot_offset = Vector2(126, 148)
 size_flags_horizontal = 4
 size_flags_vertical = 4
 script = ExtResource("1_ggdq3")
