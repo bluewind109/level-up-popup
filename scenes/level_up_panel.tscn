@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bkr80g22y78fw" path="res://scenes/level_up_card.tscn" id="2_ghlmq"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_owpp6"]
+bg_color = Color(0.06879826, 0.06879829, 0.06879823, 1)
 border_width_left = 5
 border_width_top = 5
 border_width_right = 5

@@ -7,11 +7,14 @@ class_name PanelLevelUp
 
 var show_duration: float = 0.5
 var is_animation_done: bool = false
+var is_card_selected: bool = false
 
 func _ready() -> void:
+	SignalManager.on_card_selected.connect(_on_card_selected)
 	if (button_ok):
 		button_ok.pressed.connect(_on_button_ok)
 	show_popup()
+	button_ok.disabled = true
 
 func show_popup() -> void:
 	print("show_popup")
@@ -65,3 +68,8 @@ func _on_button_ok() -> void:
 
 	# Unpause the game after tween animation is done
 	await get_tree().create_timer(hide_duration).timeout
+
+func _on_card_selected() -> void:
+	# print("_on_card_selected")
+	is_card_selected = true
+	button_ok.disabled = false
