@@ -11,6 +11,7 @@ var can_select: bool = false
 func _ready() -> void:
 	self.modulate.a = 0
 	can_select = false
+	pivot_offset = size * Vector2(0.5, 0.5)
 
 func enable_selection(val: bool) -> void:
 	can_select = val
