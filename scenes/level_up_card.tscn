@@ -1,8 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://bkr80g22y78fw"]
+[gd_scene load_steps=11 format=3 uid="uid://bkr80g22y78fw"]
 
 [ext_resource type="Script" uid="uid://dbbb7vchxqmda" path="res://scenes/level_up_card.gd" id="1_ggdq3"]
 [ext_resource type="Texture2D" uid="uid://dg8vplvbg21n3" path="res://assets/Screenshot 2023-08-21 222316.png" id="2_t30hr"]
 [ext_resource type="ButtonGroup" uid="uid://bysaf8n2psac0" path="res://button_group_level_up_card.tres" id="3_t30hr"]
+[ext_resource type="AudioStream" uid="uid://bpm0xynrik268" path="res://assets/pop-402323.mp3" id="4_cv32a"]
+[ext_resource type="AudioStream" uid="uid://c2r1k3c750unt" path="res://assets/switch-button-106349.mp3" id="5_qqdw6"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ggdq3"]
 bg_color = Color(0.686, 0.22, 0.122, 1)
@@ -38,7 +40,7 @@ border_width_bottom = 10
 border_blend = true
 corner_detail = 1
 
-[node name="level_up_card" type="Panel" node_paths=PackedStringArray("button_component")]
+[node name="level_up_card" type="Panel" node_paths=PackedStringArray("button_component", "sound_pop", "sound_click")]
 clip_contents = true
 custom_minimum_size = Vector2(250, 300)
 offset_right = 250.0
@@ -48,6 +50,8 @@ size_flags_vertical = 4
 theme_override_styles/panel = SubResource("StyleBoxFlat_ggdq3")
 script = ExtResource("1_ggdq3")
 button_component = NodePath("button")
+sound_pop = NodePath("audio_stream_player_pop")
+sound_click = NodePath("audio_stream_player_click")
 
 [node name="margin_container" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -98,3 +102,9 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_cv32a")
 theme_override_styles/hover = SubResource("StyleBoxFlat_ksb62")
 toggle_mode = true
 button_group = ExtResource("3_t30hr")
+
+[node name="audio_stream_player_pop" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_cv32a")
+
+[node name="audio_stream_player_click" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_qqdw6")

@@ -4,6 +4,7 @@ class_name PanelLevelUp
 @export var card_prefab = preload("res://scenes/level_up_card.tscn")
 @export var card_container: HBoxContainer
 @export var button_ok: Button
+@export var sound_ok: AudioStreamPlayer
 
 var show_duration: float = 0.5
 var is_animation_done: bool = false
@@ -64,6 +65,7 @@ func _on_button_ok() -> void:
 	print("_on_button_ok")
 	if (not is_animation_done): return
 	_tween_hide_panel()
+	sound_ok.play()
 	# TODO Whatever logic you want to put in
 
 	# Unpause the game after tween animation is done

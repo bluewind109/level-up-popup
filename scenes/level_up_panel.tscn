@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://4xnbu4xk042k"]
+[gd_scene load_steps=9 format=3 uid="uid://4xnbu4xk042k"]
 
 [ext_resource type="Script" uid="uid://boql8rxoou484" path="res://scenes/level_up_panel.gd" id="1_d14fk"]
 [ext_resource type="PackedScene" uid="uid://bkr80g22y78fw" path="res://scenes/level_up_card.tscn" id="2_ghlmq"]
+[ext_resource type="AudioStream" uid="uid://8kbc14aqbptn" path="res://assets/523763__lilmati__select-granted-06.wav" id="3_7h74h"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_owpp6"]
 bg_color = Color(0.06879826, 0.06879829, 0.06879823, 1)
@@ -59,12 +60,13 @@ theme_override_constants/margin_top = 30
 theme_override_constants/margin_right = 30
 theme_override_constants/margin_bottom = 30
 
-[node name="level_up_panel" type="Panel" parent="." node_paths=PackedStringArray("card_container", "button_ok")]
+[node name="level_up_panel" type="Panel" parent="." node_paths=PackedStringArray("card_container", "button_ok", "sound_ok")]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_owpp6")
 script = ExtResource("1_d14fk")
 card_container = NodePath("margin_container/v_box_container/hb_card_container")
 button_ok = NodePath("margin_container/v_box_container/hb_button_container/button_ok")
+sound_ok = NodePath("../audio_stream_player_ok")
 
 [node name="margin_container" type="MarginContainer" parent="level_up_panel"]
 layout_mode = 1
@@ -111,3 +113,6 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_e300r")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_7h74h")
 theme_override_styles/hover = SubResource("StyleBoxFlat_u78vy")
 text = "OK"
+
+[node name="audio_stream_player_ok" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_7h74h")
