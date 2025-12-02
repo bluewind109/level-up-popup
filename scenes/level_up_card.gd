@@ -2,7 +2,6 @@ extends Panel
 class_name CardLevelUp
 
 @export var button_component: Button
-@export var sound_pop: AudioStreamPlayer
 @export var sound_click: AudioStreamPlayer
 
 # short duration = game with fast level up for urgency
@@ -29,7 +28,6 @@ func show_card() -> void:
 	_tween_show_card()
 
 func _tween_show_card() -> void:
-	sound_pop.play()
 	var tween = create_tween()
 	tween.set_trans(Tween.TRANS_SINE)
 	tween.set_ease(Tween.EASE_OUT)

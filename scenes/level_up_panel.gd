@@ -4,6 +4,7 @@ class_name PanelLevelUp
 @export var card_prefab = preload("res://scenes/level_up_card.tscn")
 @export var card_container: HBoxContainer
 @export var button_ok: Button
+@export var sound_pop: AudioStreamPlayer
 @export var sound_ok: AudioStreamPlayer
 
 var show_duration: float = 0.5
@@ -38,6 +39,8 @@ func _tween_show_panel() -> void:
 func _tween_show_card() -> void:
 	if (not card_prefab): return
 	var card_arr = []
+	sound_pop.pitch_scale = 0.25
+
 	for i in 3:
 		var card_instance = card_prefab.instantiate() as CardLevelUp
 		card_container.add_child.call_deferred(card_instance)
@@ -47,6 +50,8 @@ func _tween_show_card() -> void:
 	
 	for i in card_arr.size():
 		card_arr[i].show_card.call_deferred()
+		sound_pop.play()
+		sound_pop.pitch_scale += 0.25
 		await get_tree().create_timer(card_arr[i].tween_duration).timeout
 
 	for i in card_arr.size():
