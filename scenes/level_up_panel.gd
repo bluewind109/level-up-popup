@@ -59,22 +59,25 @@ func _tween_show_card() -> void:
 	is_animation_done = true
 
 var hide_duration: float = 0.125
+var tween_hide_panel: Tween
 func _tween_hide_panel():
+	if (tween_hide_panel): tween_hide_panel.kill()
+	else: tween_hide_panel = create_tween()
 	self.get_parent().modulate.a = 1
-	var tween = create_tween()
-	tween.set_trans(Tween.TRANS_SINE)
-	tween.set_ease(Tween.EASE_IN)
-	tween.tween_property(self.get_parent(), "modulate:a", 0, hide_duration)
+	tween_hide_panel.set_trans(Tween.TRANS_SINE)
+	tween_hide_panel.set_ease(Tween.EASE_IN)
+	tween_hide_panel.tween_property(self.get_parent(), "modulate:a", 0, hide_duration)
 
 func _on_button_ok() -> void:
 	print("_on_button_ok")
 	if (not is_animation_done): return
 	_tween_hide_panel()
 	sound_ok.play()
-	# TODO Whatever logic you want to put in
-
-	# Unpause the game after tween animation is done
-	await get_tree().create_timer(hide_duration).timeout
+	tween_hide_panel.tween_callback(func():
+		print("hide done")
+		# TODO Whatever logic you want to put in
+		# Unpause the game after tween animation is done
+	)
 
 func _on_card_selected() -> void:
 	# print("_on_card_selected")
