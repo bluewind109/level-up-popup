@@ -4,6 +4,8 @@ class_name CardLevelUp
 @export var button_component: Button
 @export var sound_click: AudioStreamPlayer
 
+var panel_ref: PanelLevelUp
+
 # short duration = game with fast level up for urgency
 # long duration = game with slower level up for more impact
 var tween_duration: float = 0.25
@@ -37,7 +39,6 @@ func _tween_show_card() -> void:
 
 var button_tween_duration: float = 0.075
 func _on_button_toggled(_toggled_on: bool) -> void:
-	SignalManager.on_card_selected.emit()
 	var button_tween = create_tween()
 	if (_toggled_on):
 		sound_click.play()
@@ -48,3 +49,5 @@ func _on_button_toggled(_toggled_on: bool) -> void:
 		button_tween.set_trans(Tween.TRANS_SINE)
 		button_tween.set_ease(Tween.EASE_IN)
 		button_tween.tween_property(self, "scale", Vector2(1, 1), button_tween_duration)
+	
+	panel_ref.on_card_selected.emit()

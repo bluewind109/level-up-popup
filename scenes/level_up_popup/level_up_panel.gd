@@ -1,7 +1,7 @@
 extends Panel
 class_name PanelLevelUp
 
-@export var card_prefab = preload("res://scenes/level_up_card.tscn")
+@export var card_prefab = preload("./level_up_card.tscn")
 @export var card_container: HBoxContainer
 @export var button_container: HBoxContainer
 
@@ -18,11 +18,14 @@ var is_card_selected: bool = false
 signal on_panel_shown
 signal on_card_shown
 signal on_button_shown
+signal on_card_selected
 
 func _ready() -> void:
-	SignalManager.on_card_selected.connect(_on_card_selected)
+	on_card_selected.connect(_on_card_selected)
+
 	if (button_reroll): button_reroll.pressed.connect(_on_button_reroll)
 	if (button_ok): button_ok.pressed.connect(_on_button_ok)
+	
 	show_popup()
 
 func _reset_cards() -> void:
@@ -68,6 +71,7 @@ func _tween_show_card(callback: Callable = Callable()) -> void:
 	sound_pop.pitch_scale = 0.25
 	for i in 3:
 		var card_instance = card_prefab.instantiate() as CardLevelUp
+		card_instance.panel_ref = self
 		card_container.add_child.call_deferred(card_instance)
 		await card_instance.ready
 		card_arr.append(card_instance)
