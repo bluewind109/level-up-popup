@@ -3,7 +3,10 @@
 [ext_resource type="Script" uid="uid://boql8rxoou484" path="res://scenes/level_up_panel.gd" id="1_d14fk"]
 [ext_resource type="PackedScene" uid="uid://bkr80g22y78fw" path="res://scenes/level_up_card.tscn" id="2_ghlmq"]
 [ext_resource type="AudioStream" uid="uid://8kbc14aqbptn" path="res://assets/523763__lilmati__select-granted-06.wav" id="3_7h74h"]
+[ext_resource type="StyleBox" uid="uid://8wu4ix1hxhyb" path="res://button_style/ui_button/ui_button_normal.tres" id="3_ggd8f"]
 [ext_resource type="AudioStream" uid="uid://bpm0xynrik268" path="res://assets/pop-402323.mp3" id="3_u78vy"]
+[ext_resource type="StyleBox" uid="uid://cirhmqhrns8gi" path="res://button_style/ui_button/ui_button_pressed.tres" id="4_0c04x"]
+[ext_resource type="StyleBox" uid="uid://dac2yrv417xnt" path="res://button_style/ui_button/ui_button_hover.tres" id="5_0at41"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_owpp6"]
 bg_color = Color(0.06879826, 0.06879829, 0.06879823, 1)
@@ -20,36 +23,6 @@ corner_detail = 20
 [sub_resource type="LabelSettings" id="LabelSettings_7axt1"]
 font_size = 64
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e300r"]
-bg_color = Color(0.11858138, 0.11858139, 0.11858132, 1)
-border_width_left = 5
-border_width_top = 5
-border_width_right = 5
-border_width_bottom = 5
-border_color = Color(0.8, 0.8, 0.8, 0.47058824)
-border_blend = true
-corner_detail = 1
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7h74h"]
-bg_color = Color(0.11858138, 0.11858139, 0.11858132, 1)
-border_width_left = 5
-border_width_top = 5
-border_width_right = 5
-border_width_bottom = 5
-border_color = Color(0.79607844, 0.85490197, 0.12156863, 0.6862745)
-border_blend = true
-corner_detail = 1
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u78vy"]
-bg_color = Color(0.11858138, 0.11858139, 0.11858132, 1)
-border_width_left = 5
-border_width_top = 5
-border_width_right = 5
-border_width_bottom = 5
-border_color = Color(0.79607844, 0.85490197, 0.12156863, 1)
-border_blend = true
-corner_detail = 1
-
 [node name="margin_container" type="MarginContainer"]
 anchors_preset = 15
 anchor_right = 1.0
@@ -61,11 +34,13 @@ theme_override_constants/margin_top = 30
 theme_override_constants/margin_right = 30
 theme_override_constants/margin_bottom = 30
 
-[node name="level_up_panel" type="Panel" parent="." node_paths=PackedStringArray("card_container", "button_ok", "sound_pop", "sound_ok")]
+[node name="level_up_panel" type="Panel" parent="." node_paths=PackedStringArray("card_container", "button_container", "button_reroll", "button_ok", "sound_pop", "sound_ok")]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_owpp6")
 script = ExtResource("1_d14fk")
 card_container = NodePath("margin_container/v_box_container/hb_card_container")
+button_container = NodePath("margin_container/v_box_container/hb_button_container")
+button_reroll = NodePath("margin_container/v_box_container/hb_button_container/button_reroll")
 button_ok = NodePath("margin_container/v_box_container/hb_button_container/button_ok")
 sound_pop = NodePath("../audio_stream_player_pop")
 sound_ok = NodePath("../audio_stream_player_ok")
@@ -105,15 +80,25 @@ layout_mode = 2
 
 [node name="hb_button_container" type="HBoxContainer" parent="level_up_panel/margin_container/v_box_container"]
 layout_mode = 2
+theme_override_constants/separation = 40
 alignment = 2
+
+[node name="button_reroll" type="Button" parent="level_up_panel/margin_container/v_box_container/hb_button_container"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = ExtResource("3_ggd8f")
+theme_override_styles/pressed = ExtResource("4_0c04x")
+theme_override_styles/hover = ExtResource("5_0at41")
+text = "Reroll"
 
 [node name="button_ok" type="Button" parent="level_up_panel/margin_container/v_box_container/hb_button_container"]
 custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
 theme_override_font_sizes/font_size = 48
-theme_override_styles/normal = SubResource("StyleBoxFlat_e300r")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_7h74h")
-theme_override_styles/hover = SubResource("StyleBoxFlat_u78vy")
+theme_override_styles/normal = ExtResource("3_ggd8f")
+theme_override_styles/pressed = ExtResource("4_0c04x")
+theme_override_styles/hover = ExtResource("5_0at41")
 text = "OK"
 
 [node name="audio_stream_player_pop" type="AudioStreamPlayer" parent="."]
