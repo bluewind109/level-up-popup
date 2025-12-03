@@ -60,6 +60,7 @@ func _tween_show_panel() -> void:
 func _tween_show_card(callback: Callable = Callable()) -> void:
 	if (not card_prefab): return
 	is_animation_done = false
+	is_card_selected = false
 	button_ok.disabled = true
 	_reset_cards()
 	card_container.modulate.a = 1
@@ -114,7 +115,10 @@ func _on_button_reroll() -> void:
 func _on_button_ok() -> void:
 	print("_on_button_ok")
 	if (not is_animation_done): return
+	if (not is_card_selected): return
 	_tween_hide_panel()
+	is_card_selected = false
+	is_animation_done = false
 	sound_ok.pitch_scale = 1.0
 	sound_ok.play()
 	tween_hide_panel.tween_callback(func():
